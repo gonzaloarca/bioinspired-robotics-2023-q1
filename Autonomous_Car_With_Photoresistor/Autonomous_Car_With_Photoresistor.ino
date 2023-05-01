@@ -7,14 +7,46 @@ int enB = 3;
 int in3 = 5;
 int in4 = 4;
 
+// Photoresistor connection
+const int pResistor1 = A0;  // Photoresistor at Arduino analog pin A0
+const int pResistor2 = A1;  // Photoresistor at Arduino analog pin A0
+
+// LED conneciton
+const int ledPin1 = 10;
+const int ledPin2 = 13;
+
+// Distance sensor connections
 const int trigger = 12;  //Pin digital 2 para el Trigger del sensor
 const int echo = 11;     //Pin digital 3 para el echo del sensor
 
+const int MAX_SENSOR_DISTANCE = 20;
+const int MIN_SENSOR_DISTANCE = 7;
+
+const int LED_THRESHOLD = 700;
+
 void setupDistanceSensor() {
-  Serial.begin(9600);          //iniciailzamos la comunicación
   pinMode(trigger, OUTPUT);    //pin como salida
   pinMode(echo, INPUT);        //pin como entrada
   digitalWrite(trigger, LOW);  //Inicializamos el pin con 0
+}
+
+void setupLeds() {
+  pinMode(ledPin1, OUTPUT);  // Set lepPin - 9 pin as an output
+  pinMode(ledPin2, OUTPUT);  // Set lepPin - 10 pin as an output
+}
+
+void setupPhotoresistors() {
+  pinMode(pResistor1, INPUT);
+  pinMode(pResistor2, INPUT);
+}
+
+void setupMotors() {
+  pinMode(enA, OUTPUT);
+  pinMode(enB, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
 }
 
 int getSensorDistance() {
@@ -54,25 +86,42 @@ void turnOffMotors() {
   digitalWrite(in4, LOW);
 }
 
-void setup() {
-  setupDistanceSensor();
+int readPhotoresistor1() {
+  return analogRead(pResistor1);
+}
 
-  // Set all the motor control pins to outputs
-  pinMode(enA, OUTPUT);
-  pinMode(enB, OUTPUT);
-  pinMode(in1, OUTPUT);
-  pinMode(in2, OUTPUT);
-  pinMode(in3, OUTPUT);
-  pinMode(in4, OUTPUT);
+int readPhotoresistor2() {
+  return analogRead(pResistor2);
+}
+
+void photoResistorLoop() {
+  int p1 = readPhotoresistor1();
+  int p2 = readPhotoresistor2();
+
+  Serial.print("Luz 1: ");
+  Serial.print(p1);
+  Serial.println();
+
+  Serial.print("Luz 2: ");
+  Serial.print(p2);
+  Serial.println();
+  digitalWrite(ledPin2, p1 < LED_THRESHOLD && p2 < LED_THRESHOLD ? HIGH : LOW);
+}
+
+void setup() {
+  Serial.begin(9600);  //iniciailzamos la comunicación
+  setupDistanceSensor();
+  setupMotors();
+  setupPhotoresistors();
+  setupLeds();
 
   // Turn off motors - Initial state
   turnOffMotors();
 }
 
-int MAX_SENSOR_DISTANCE = 20;
-int MIN_SENSOR_DISTANCE = 7;
 
 void loop() {
+  photoResistorLoop();
   int d = getSensorDistance();
 
   int speed = computeSpeed(d, MIN_SENSOR_DISTANCE, MAX_SENSOR_DISTANCE);
@@ -88,14 +137,14 @@ void moveAForward() {
   digitalWrite(in2, LOW);
 }
 
-void moveBForward() {
-  digitalWrite(in3, HIGH);
-  digitalWrite(in4, LOW);
-}
-
 void moveABackward() {
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
+}
+
+void moveBForward() {
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
 }
 
 void moveBBackward() {
