@@ -143,8 +143,8 @@ public:
 
     Serial.println("Begin read");
 
-    isReading = true;
     digitalWrite(triggerPin, HIGH);
+    isReading = true;
     senseTime = millis();
   }
 
@@ -177,12 +177,32 @@ public:
   }
 };
 
-DistanceSensor ds(12, 11, 100);
+class Car {
+  DistanceSensor distanceSensor;
+  Motor leftMotor;
+  Motor rightMotor;
+  Photoresistor leftLdr;
+  Photoresistor rightLdr;
+  Led leftLed;
+  Led rightLed;
+
+public:
+  Car()
+    : distanceSensor(12, 11, 100),
+      leftMotor(9, 8, 7),
+      rightMotor(3, 5, 4),
+      leftLdr(A1),
+      rightLdr(A0),
+      leftLed(13, 500, 500),
+      rightLed(10, 500, 500) {}
+};
+
+Car car();
 
 void setup() {
   Serial.begin(9600);
 }
 
 void loop() {
-  ds.Update();
+  
 }
