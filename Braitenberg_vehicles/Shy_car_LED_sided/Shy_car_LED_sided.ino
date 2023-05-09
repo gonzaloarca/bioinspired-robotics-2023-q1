@@ -22,10 +22,12 @@ const int echo = 11;     //Pin digital 3 para el echo del sensor
 const int MAX_SENSOR_DISTANCE = 20;
 const int MIN_SENSOR_DISTANCE = 7;
 
-const int LED_THRESHOLD = 700;
+const int LED_THRESHOLD = 800;
 
 const int WAIT_TIME = 500;
 
+const int MAX_SPEED_LEFT_MOTOR = 225;
+const int MAX_SPEED_RIGHT_MOTOR = 255;
 /*
 
 ZONA DE BEHAVIOUR
@@ -52,17 +54,32 @@ int computeSpeedFromLight(int strength, int threshold) {
   return 0;
 }
 
+
 int behaviour() {
   int p1 = readPhotoresistor1();
   int p2 = readPhotoresistor2();
+  digitalWrite(ledPin1, p1 > LED_THRESHOLD ? HIGH : LOW);
+  digitalWrite(ledPin2, p2 > LED_THRESHOLD  ? HIGH : LOW);
+  int distance = getSensorDistance();
+  
+  //calcular la velocidad maxima de los motores-
+  int speed = computeSpeedFromDistance(distance , 5 , 14);
+  
   int speedLeft = computeSpeedFromLight(p2, LED_THRESHOLD);
   int speedRight = computeSpeedFromLight(p1,  LED_THRESHOLD);
-s
-  Serial.println(speed);
-  moveForward();
-  setLeftMotorSpeed(speedLeft);
-  setRightMotorSpeed(speedRight);
-  return speed;
+
+  if(speedLeft == 0 && speedRight == 0) //desempatar las velocidades si los dos se frenan
+    speedRight = 255;
+  
+  speedLeft = map(speedLeft,0,255,0,speed);
+  Serial.print("Speed left: ");
+  Serial.println( speedLeft);
+  speedRight = map(speedRight,0,255,0,speed);
+  Serial.print("Speed Right: ");
+  Serial.println( speedRight);
+  setLeftMotorSpeed(speedRight);
+  setRightMotorSpeed(speedLeft);
+  return speedLeft + speedRight;
 }
 
 void loop() {
@@ -107,6 +124,7 @@ void setup() {
   setupPhotoresistors();
   setupLeds();
 
+  delay(5000);
   // Turn off motors - Initial state
   turnOffMotors();
 }
@@ -196,6 +214,16 @@ void moveBackward() {
   moveABackward();
   moveBBackward();
 }
+
+void turnOffLeftMotor(){
+   digitalWrite(in1, LOW);
+  digitalWrite(in2, LOW);
+}
+
+void turnffRightMotor(){
+   digitalWrite(in3, LOW);
+  digitalWrite(in4, LOW);
+}
 void turnOffMotors() {
   digitalWrite(in1, LOW);
   digitalWrite(in2, LOW);
@@ -224,7 +252,7 @@ void directionControl() {
 }
 
 
-void setRightMotorSpeed(int speed){
+void setLeftMotorSpeed(int speed){
   if(speed > 0){
       moveAForward();
   }else if(speed < 0){  
@@ -234,11 +262,11 @@ void setRightMotorSpeed(int speed){
     digitalWrite(in1, LOW);
     digitalWrite(in2, LOW);
   }
-  analogWrite(enA, speed);
- 
+  analogWrite(enA,  map(speed, 0 , 255 , 0 , MAX_SPEED_LEFT_MOTOR));
+  
 }
 
-void setLeftMotorSpeed(int speed){
+void setRightMotorSpeed(int speed){
   if(speed > 0){
     moveBForward();
   }else if(speed < 0){  
@@ -248,11 +276,15 @@ void setLeftMotorSpeed(int speed){
     digitalWrite(in3, LOW);
     digitalWrite(in4, LOW);
   }
-  analogWrite(enB, speed);
+  analogWrite(enB, map(speed, 0 , 255 , 0 , MAX_SPEED_RIGHT_MOTOR));
 }
 
 // This function lets you control speed of the motors
 void setMotorsSpeed(int speed) {
+    if(speed == 0){
+    turnOffMotors();
+    return;
+  }
   analogWrite(enA, speed);
   analogWrite(enB, speed);
 }

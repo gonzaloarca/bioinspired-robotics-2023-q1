@@ -11,9 +11,9 @@ int in4 = 4;
 const int pResistor1 = A0;  // Photoresistor at Arduino analog pin A0 //DERECHA
 const int pResistor2 = A1;  // Photoresistor at Arduino analog pin A0 //IZQUIERDA
 
-// LED conneciton
-const int ledPin1 = 10;  //led derecho
-const int ledPin2 = 13;  //led izquierdo
+// LED conneciton                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+const int ledPin1 = 10; //led derecho
+const int ledPin2 = 13; //led izquierdo
 
 // Distance sensor connections
 const int trigger = 12;  //Pin digital 2 para el Trigger del sensor
@@ -43,30 +43,17 @@ int computeSpeedFromDistance(int distance, int minDistance, int maxDistance) {
   return map(distance, minDistance, 1180, 50, 255);
 }
 
-//recommended 5cm
-//strength from 0 to 1024
-int computeSpeedFromLight(int strength, int threshold) {
-  if (strength < threshold ) {
-    return 255;
-  }
-  return 0;
-}
 
-int behaviour() {
-  int p1 = readPhotoresistor1();
-  int p2 = readPhotoresistor2();
-  int speedLeft = computeSpeedFromLight(p2, LED_THRESHOLD);
-  int speedRight = computeSpeedFromLight(p1,  LED_THRESHOLD);
-s
-  Serial.println(speed);
-  moveForward();
-  setLeftMotorSpeed(speedLeft);
-  setRightMotorSpeed(speedRight);
-  return speed;
-}
 
 void loop() {
-  behaviour();
+  //photoResistorLoop();
+  int d = getSensorDistance();
+
+  int speed = computeSpeedFromDistance(d, MIN_SENSOR_DISTANCE, MAX_SENSOR_DISTANCE);
+
+  moveForward();
+
+  setMotorsSpeed(speed);
   delay(100);
 }
 
@@ -140,7 +127,7 @@ int getSensorDistance() {
 void photoResistorLoop() {
   int p1 = readPhotoresistor1();
   int p2 = readPhotoresistor2();
-
+  
   Serial.print("Luz 1: ");
   Serial.print(p1);
   Serial.println();
@@ -149,7 +136,7 @@ void photoResistorLoop() {
   Serial.print(p2);
   Serial.println();
   digitalWrite(ledPin1, p1 > LED_THRESHOLD ? HIGH : LOW);
-  digitalWrite(ledPin2, p2 > LED_THRESHOLD ? HIGH : LOW);
+  digitalWrite(ledPin2, p2 > LED_THRESHOLD  ? HIGH : LOW);
 }
 
 int readPhotoresistor1() {
@@ -223,36 +210,14 @@ void directionControl() {
   turnOffMotors();
 }
 
-
-void setRightMotorSpeed(int speed){
-  if(speed > 0){
-      moveAForward();
-  }else if(speed < 0){  
-      moveABackward();
-  }else{
-    //MODULARIZAR A MOTOR 
-    digitalWrite(in1, LOW);
-    digitalWrite(in2, LOW);
-  }
-  analogWrite(enA, speed);
- 
-}
-
-void setLeftMotorSpeed(int speed){
-  if(speed > 0){
-    moveBForward();
-  }else if(speed < 0){  
-      moveBBackward();
-  }else{
-    //MODULARIZAR A MOTOR 
-    digitalWrite(in3, LOW);
-    digitalWrite(in4, LOW);
-  }
-  analogWrite(enB, speed);
-}
-
 // This function lets you control speed of the motors
 void setMotorsSpeed(int speed) {
   analogWrite(enA, speed);
   analogWrite(enB, speed);
 }
+
+
+
+
+
+

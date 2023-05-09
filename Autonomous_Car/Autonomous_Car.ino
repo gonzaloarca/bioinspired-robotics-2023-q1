@@ -134,6 +134,10 @@ void directionControl() {
 
 // This function lets you control speed of the motors
 void setMotorsSpeed(int speed) {
+  if(speed == 0){
+    turnOffMotors();
+    return;
+  }
   analogWrite(enA, speed);
   analogWrite(enB, speed);
 }
