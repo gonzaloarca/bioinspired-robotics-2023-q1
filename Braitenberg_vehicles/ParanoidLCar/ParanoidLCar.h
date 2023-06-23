@@ -4,10 +4,12 @@
 #include <Arduino.h>
 
 
-// enum State{
-//   SPIN,
-//   CHASE
-// };
+enum BehaviorStates{
+  SPIN = 0,
+  CORRECT = 1,
+  CHASE = 2 ,
+  STOP = 3
+};
 
 class ParanoidLCar : public CarBehavior {
 private:
@@ -15,7 +17,7 @@ private:
   int maxPhotoresistorValue;
   int stopDistance;
   int slowDownDistance;
-  //State state;
+  BehaviorStates state;
   int leftMotorSpeed;
   int rightMotorSpeed;
   //unsigned long spinTime;

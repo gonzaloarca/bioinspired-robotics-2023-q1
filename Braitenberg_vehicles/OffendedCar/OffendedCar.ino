@@ -1,12 +1,13 @@
 #include <Arduino.h>
 #include "Car.h"
 
-OffendedCar behavior(15,25,100);
+OffendedCar behavior(15,35,250);
 Car car(behavior);
 
 void setup()
 {
   Serial.begin(9600);
+  Serial.println("HELLOO!");
 }
 
 void loop()

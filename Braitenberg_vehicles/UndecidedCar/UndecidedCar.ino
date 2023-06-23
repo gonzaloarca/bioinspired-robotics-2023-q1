@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "Car.h"
 
-UndecidedCar behavior(15,25);
+UndecidedCar behavior(20,40);
 Car car(behavior);
 
 void setup()

@@ -27,42 +27,42 @@ UndecidedCar::UndecidedCar( int stopDistance, int slowDownDistance)
 
     //no dobla
     switch(this->state){
+      case RETREAT:
+        Serial.println("retreat");
+        if(distance > slowDownDistance ){
+          this->state = MOVE;
+          
+        leftMotorSpeed =   150;
+        rightMotorSpeed =  200;
+        }
+        leftMotorSpeed =   150 - 255;
+        rightMotorSpeed =  150 - 255;
+        return;
+
       case MOVE:
        //checkeo choque
-        if (distance > stopDistance && speed > 10){
-          //slow down
-          if (distance < slowDownDistance){
-            Serial.println("Slow down!");
-            leftMotorSpeed /= 4;
-            rightMotorSpeed /= 4;
-            return;
-          }
-          //speed up
-          speed = constrain(speed * 2, 50 , 255);
-          rightMotorSpeed= leftMotorSpeed = speed; 
-          return;
-        }
-        //tengo que frenar y cambio de estado
+       if(distance < stopDistance ){
+          //tengo que frenar y cambio de estado
         Serial.println("too close!");
         leftMotorSpeed = 0;
         rightMotorSpeed = 0;
         //change state
         this->state = RETREAT;
+        return;         
+      }
       
-      case RETREAT:
-        if(distance > slowDownDistance ){
-          this->state = MOVE;
-        }
-
-        if(speed > 20 ){
-          //slow down
-          rightMotorSpeed= leftMotorSpeed= speed;
-          leftMotorSpeed /= 4;
-          rightMotorSpeed /= 4;
-        }else{
-          speed = constrain(speed * 2, -50 , -255);
-        }
+      if (distance < slowDownDistance){
+        Serial.println("Slow down!");
+        leftMotorSpeed = 100;
+        rightMotorSpeed = 100;
         return;
+      }
+      Serial.println("Forward");
+      speed = 200;
+      rightMotorSpeed= 200;
+      leftMotorSpeed = 180; 
+      return;
+    
       default: 
         return;
     }

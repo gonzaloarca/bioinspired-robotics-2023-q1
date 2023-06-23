@@ -49,6 +49,9 @@ FearCar::FearCar(int stopDistance, int slowDownDistance)
   
     Serial.println("Im  fearful");
     
-    leftMotorSpeed = map( leftPhotoresistorValue, 300 , 1023 , 0 , 255 );
-    rightMotorSpeed = map( rightPhotoresistorValue , 300 , 1023 , 0 , 255 );
+    Serial.println("Im  fearful");
+    leftMotorSpeed = map( rightPhotoresistorValue, 0 , 1023 , 0 , 255 );
+    leftMotorSpeed = constrain(leftMotorSpeed * 1.25, 0 , 255 );
+    rightMotorSpeed = map( leftPhotoresistorValue , 0 , 1023 , 0 , 255 );
+    rightMotorSpeed = constrain(rightMotorSpeed * 1.25 , 0 , 255);
 }

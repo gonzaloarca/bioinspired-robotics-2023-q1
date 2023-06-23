@@ -7,7 +7,7 @@
 #define LED_OFF_TIME 500
 
 // DISTANCE SENSOR MACROS
-#define DISTANCE_SENSOR_UPDATE_INTERVAL 100
+#define DISTANCE_SENSOR_UPDATE_INTERVAL 50
 #define ECHO_PIN 11
 #define TRIGGER_PING 12
 
@@ -15,12 +15,12 @@
 #define LEFT_MOTOR_SPEED_PIN 9
 #define LEFT_MOTOR_DIR_PIN1 8
 #define LEFT_MOTOR_DIR_PIN2 7
-#define LEFT_MOTOR_MAX_SPEED 115
-// RIGHT MOTOR
+#define LEFT_MOTOR_MAX_SPEED 255
+// RIGHT MOTOR  
 #define RIGHT_MOTOR_SPEED_PIN 3
 #define RIGHT_MOTOR_DIR_PIN1 5
 #define RIGHT_MOTOR_DIR_PIN2 4
-#define RIGHT_MOTOR_MAX_SPEED 130
+#define RIGHT_MOTOR_MAX_SPEED 230
 
 Car::Car(const UndecidedCar &b)
     : distanceSensor(TRIGGER_PING, ECHO_PIN, DISTANCE_SENSOR_UPDATE_INTERVAL),
@@ -54,5 +54,5 @@ void Car::update()
         leftMotor.setSpeed(behavior.getLeftMotorSpeed());
         rightMotor.setSpeed(behavior.getRightMotorSpeed());
         
-    //    delay(1000);
+        //delay(4000);
 };

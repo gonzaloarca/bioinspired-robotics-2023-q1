@@ -15,6 +15,7 @@ private:
   int maxPhotoresistorValue;
   int stopDistance;
   int slowDownDistance;
+  bool ready;
   State state;
   int leftMotorSpeed;
   int rightMotorSpeed;

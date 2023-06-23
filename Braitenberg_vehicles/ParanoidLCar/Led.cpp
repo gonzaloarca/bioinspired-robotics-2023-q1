@@ -24,11 +24,14 @@ void Led::Update()
     ledState = LOW;                 // Turn it off
     previousMillis = currentMillis; // Remember the time
     digitalWrite(ledPin, ledState); // Update the actual LED
+    Serial.println("Led on");
   }
   else if ((ledState == LOW) && (currentMillis - previousMillis >= offTime))
   {
     ledState = HIGH;                // turn it on
     previousMillis = currentMillis; // Remember the time
     digitalWrite(ledPin, ledState); // Update the actual LED
+    Serial.println("Led off");
+
   }
 }

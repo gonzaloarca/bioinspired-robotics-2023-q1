@@ -48,6 +48,8 @@ AggresiveCar::AggresiveCar(int stopDistance, int slowDownDistance)
 
   
     Serial.println("Im  fearful");
-    leftMotorSpeed = map( rightPhotoresistorValue, 300 , 1023 , 0 , 255 );
-    rightMotorSpeed = map( leftPhotoresistorValue , 300 , 1023 , 0 , 255 );
+    leftMotorSpeed = map( leftPhotoresistorValue, 400 , 1023 , 0 , 255 );
+    if(leftMotorSpeed < 0 ) leftMotorSpeed = 0;
+    rightMotorSpeed = map( rightPhotoresistorValue , 400 , 1023 , 0 , 255 );
+    if(rightMotorSpeed < 0 ) rightMotorSpeed = 0;
 }

@@ -12,7 +12,7 @@ private:
   int leftMotorSpeed;
   int rightMotorSpeed;
 public:
-    FearCar(int minPhotoresistorValue, int maxPhotoresistorValue, int stopDistance, int slowDownDistance);
+    FearCar( int stopDistance, int slowDownDistance);
     virtual void update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance);
     virtual int getLeftMotorSpeed();
     virtual int getRightMotorSpeed();

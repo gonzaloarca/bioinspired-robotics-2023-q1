@@ -47,8 +47,9 @@ ExplorerCar::ExplorerCar(int stopDistance, int slowDownDistance)
     
 
   
-    Serial.println("Im  fearful");
+    Serial.println("exploring");
     
-    leftMotorSpeed = 255 - map( leftPhotoresistorValue, 300 , 1023 , 0 , 255 );
-    rightMotorSpeed = 255 - map( rightPhotoresistorValue , 300 , 1023 , 0 , 255 );
+    //estan cruzados los motores, left es right y right es left
+    leftMotorSpeed = 255 - map( leftPhotoresistorValue, 300 , 1023 , 0 , 200 );
+    rightMotorSpeed = 255 - map( rightPhotoresistorValue , 300 , 1023 , 0 , 200 );
 }

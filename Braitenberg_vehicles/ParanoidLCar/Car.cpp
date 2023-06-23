@@ -7,7 +7,7 @@
 #define LED_OFF_TIME 500
 
 // DISTANCE SENSOR MACROS
-#define DISTANCE_SENSOR_UPDATE_INTERVAL 100
+#define DISTANCE_SENSOR_UPDATE_INTERVAL 20
 #define ECHO_PIN 11
 #define TRIGGER_PING 12
 
@@ -15,12 +15,12 @@
 #define LEFT_MOTOR_SPEED_PIN 9
 #define LEFT_MOTOR_DIR_PIN1 8
 #define LEFT_MOTOR_DIR_PIN2 7
-#define LEFT_MOTOR_MAX_SPEED 115
+#define LEFT_MOTOR_MAX_SPEED 240
 // RIGHT MOTOR
 #define RIGHT_MOTOR_SPEED_PIN 3
 #define RIGHT_MOTOR_DIR_PIN1 5
 #define RIGHT_MOTOR_DIR_PIN2 4
-#define RIGHT_MOTOR_MAX_SPEED 130
+#define RIGHT_MOTOR_MAX_SPEED 255
 
 Car::Car(const ParanoidLCar &b)
     : distanceSensor(TRIGGER_PING, ECHO_PIN, DISTANCE_SENSOR_UPDATE_INTERVAL),
@@ -37,22 +37,23 @@ void Car::update()
 {
         distanceSensor.update();
 
-        Serial.println("");
+        // Serial.println("");
         Serial.print("Light left " );
         Serial.println(leftLdr.read());
         Serial.print("Light right  ");
         Serial.println(rightLdr.read());
-        Serial.print("Distance ");
-        Serial.println(distanceSensor.read());
+        // Serial.print("Distance ");
+        // Serial.println(distanceSensor.read());
 
         behavior.update(leftLdr.read(), rightLdr.read(), distanceSensor.read());
-        Serial.print("Speed left " );
-        Serial.println(behavior.getLeftMotorSpeed());
-        Serial.print("Speed right ");
-        Serial.println(behavior.getRightMotorSpeed());
+        // Serial.print("Speed left " );
+        // Serial.println(behavior.getLeftMotorSpeed());
+        // Serial.print("Speed right ");
+        // Serial.println(behavior.getRightMotorSpeed());
         
         leftMotor.setSpeed(behavior.getLeftMotorSpeed());
         rightMotor.setSpeed(behavior.getRightMotorSpeed());
-        
-    //    delay(1000);
+        //leftLed.Update();
+        //rightLed.Update();
+        //Delay(3000);
 };

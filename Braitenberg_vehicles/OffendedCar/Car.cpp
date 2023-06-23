@@ -15,12 +15,12 @@
 #define LEFT_MOTOR_SPEED_PIN 9
 #define LEFT_MOTOR_DIR_PIN1 8
 #define LEFT_MOTOR_DIR_PIN2 7
-#define LEFT_MOTOR_MAX_SPEED 115
+#define LEFT_MOTOR_MAX_SPEED 160
 // RIGHT MOTOR
 #define RIGHT_MOTOR_SPEED_PIN 3
 #define RIGHT_MOTOR_DIR_PIN1 5
 #define RIGHT_MOTOR_DIR_PIN2 4
-#define RIGHT_MOTOR_MAX_SPEED 130
+#define RIGHT_MOTOR_MAX_SPEED 160
 
 Car::Car(const OffendedCar &b)
     : distanceSensor(TRIGGER_PING, ECHO_PIN, DISTANCE_SENSOR_UPDATE_INTERVAL),
@@ -35,6 +35,7 @@ Car::Car(const OffendedCar &b)
 
 void Car::update()
 {
+
         distanceSensor.update();
 
         Serial.println("");
@@ -44,6 +45,8 @@ void Car::update()
         Serial.println(rightLdr.read());
         Serial.print("Distance ");
         Serial.println(distanceSensor.read());
+      
+
 
         behavior.update(leftLdr.read(), rightLdr.read(), distanceSensor.read());
         Serial.print("Speed left " );
@@ -53,6 +56,7 @@ void Car::update()
         
         leftMotor.setSpeed(behavior.getLeftMotorSpeed());
         rightMotor.setSpeed(behavior.getRightMotorSpeed());
+
+        //delay(2000);
         
-    //    delay(1000);
 };
