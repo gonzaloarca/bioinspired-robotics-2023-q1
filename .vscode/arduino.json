@@ -1,7 +1,0 @@
-{
-    "board": "arduino:avr:uno",
-    "programmer": "arduinoisp",
-    "sketch": "Braitenberg_vehicles\\TheCar\\TheCar.ino",
-    "output": "../ArduinoOutput",
-    "port": "COM3"
-}
