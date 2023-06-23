@@ -24,7 +24,7 @@ ParanoidLCar::ParanoidLCar( int stopDistance, int slowDownDistance)
 
  void ParanoidLCar::update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance){
 
-    unsigned long currentTime;
+    
    switch(this->state){
      
      
@@ -44,7 +44,7 @@ ParanoidLCar::ParanoidLCar( int stopDistance, int slowDownDistance)
         leftMotorSpeed =  - ( 255 - 80 );
         rightMotorSpeed = 80;
         if(distance < slowDownDistance ){
-          this->lastSpinTime = millis();
+          
           this->state = CHASE;
           rightMotorSpeed =  0;
           leftMotorSpeed = 0;
@@ -52,9 +52,9 @@ ParanoidLCar::ParanoidLCar( int stopDistance, int slowDownDistance)
         break;
      
       default:
-        Serial.println("NONE");
+       
         break;
       }  
 
-      Serial.println("end of switch");
+    
 }
