@@ -4,12 +4,12 @@
 
  int OffendedCar::getLeftMotorSpeed() 
 {
-  return leftMotorSpeed;
+  return rightMotorSpeed;
 }
 
  int OffendedCar::getRightMotorSpeed() 
 {
-  return rightMotorSpeed;
+  return leftMotorSpeed;
 }
 
 OffendedCar::OffendedCar( int stopDistance, int slowDownDistance , int spinTime)
@@ -82,8 +82,8 @@ OffendedCar::OffendedCar( int stopDistance, int slowDownDistance , int spinTime)
           leftMotorSpeed = 0;
           rightMotorSpeed = 0;
         }else if (this-> lastSpinTime + (this->spinTime * 2) < currentTime){
-          leftMotorSpeed = 70;
-          rightMotorSpeed = -70;
+          rightMotorSpeed = 70;
+          leftMotorSpeed = -70;
         }
         return;
       default: 

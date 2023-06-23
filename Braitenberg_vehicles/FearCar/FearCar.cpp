@@ -4,12 +4,12 @@
 
  int FearCar::getLeftMotorSpeed() 
 {
-  return leftMotorSpeed;
+  return rightMotorSpeed;
 }
 
  int FearCar::getRightMotorSpeed() 
 {
-  return rightMotorSpeed;
+  return leftMotorSpeed;
 }
 
 FearCar::FearCar(int stopDistance, int slowDownDistance)
@@ -47,11 +47,13 @@ FearCar::FearCar(int stopDistance, int slowDownDistance)
     
 
   
-    Serial.println("Im  fearful");
+  
     
     Serial.println("Im  fearful");
-    leftMotorSpeed = map( rightPhotoresistorValue, 0 , 1023 , 0 , 255 );
+    rightMotorSpeed = map( rightPhotoresistorValue, 0 , 1023 , 0 , 255 );
+    
+    leftMotorSpeed = map( leftPhotoresistorValue , 0 , 1023 , 0 , 255 );
+
     leftMotorSpeed = constrain(leftMotorSpeed * 1.25, 0 , 255 );
-    rightMotorSpeed = map( leftPhotoresistorValue , 0 , 1023 , 0 , 255 );
     rightMotorSpeed = constrain(rightMotorSpeed * 1.25 , 0 , 255);
 }

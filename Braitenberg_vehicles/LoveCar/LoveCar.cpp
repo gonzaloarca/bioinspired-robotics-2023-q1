@@ -4,12 +4,12 @@
 
  int LoveCar::getLeftMotorSpeed() 
 {
-  return leftMotorSpeed;
+  return rightMotorSpeed;
 }
 
  int LoveCar::getRightMotorSpeed() 
 {
-  return rightMotorSpeed;
+  return leftMotorSpeed;
 }
 
 LoveCar::LoveCar(int stopDistance, int slowDownDistance)
@@ -51,6 +51,6 @@ LoveCar::LoveCar(int stopDistance, int slowDownDistance)
 
     
     
-    leftMotorSpeed = 255 - map( rightPhotoresistorValue, 300 , 1023 , 0 , 255 );
-    rightMotorSpeed = 255 - map( leftPhotoresistorValue , 300 , 1023 , 0 , 255 );
+    rightMotorSpeed = 255 - map( rightPhotoresistorValue, 300 , 1023 , 0 , 255 );
+    leftMotorSpeed = 255 - map( leftPhotoresistorValue , 300 , 1023 , 0 , 255 );
 }

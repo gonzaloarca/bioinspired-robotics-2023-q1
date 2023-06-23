@@ -4,12 +4,12 @@
 
  int ObstinateCar::getLeftMotorSpeed() 
 {
-  return leftMotorSpeed;
+  return rightMotorSpeed;
 }
 
  int ObstinateCar::getRightMotorSpeed() 
 {
-  return rightMotorSpeed;
+  return leftMotorSpeed;
 }
 
 ObstinateCar::ObstinateCar( int stopDistance, int slowDownDistance, unsigned long backUpTime)
@@ -35,9 +35,9 @@ ObstinateCar::ObstinateCar( int stopDistance, int slowDownDistance, unsigned lon
         Serial.println("retreat");
         if(this->lastDetectTime + this->backUpTime < currentTime ){
           this->state = MOVE;
-            
-          leftMotorSpeed =   150;
-          rightMotorSpeed =  200;
+          
+          rightMotorSpeed =   150;
+          leftMotorSpeed =  200;
           return;
         }
         leftMotorSpeed =   150 - 255;
@@ -66,8 +66,8 @@ ObstinateCar::ObstinateCar( int stopDistance, int slowDownDistance, unsigned lon
         }
         Serial.println("Forward");
         speed = 200;
-        rightMotorSpeed= 200;
-        leftMotorSpeed = 180; 
+        leftMotorSpeed= 200;
+        rightMotorSpeed = 180; 
         return;
 
       default: 

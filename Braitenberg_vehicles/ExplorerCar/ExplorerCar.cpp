@@ -4,12 +4,12 @@
 
  int ExplorerCar::getLeftMotorSpeed() 
 {
-  return leftMotorSpeed;
+  return rightMotorSpeed;
 }
 
  int ExplorerCar::getRightMotorSpeed() 
 {
-  return rightMotorSpeed;
+  return leftMotorSpeed;
 }
 
 ExplorerCar::ExplorerCar(int stopDistance, int slowDownDistance)
@@ -49,7 +49,11 @@ ExplorerCar::ExplorerCar(int stopDistance, int slowDownDistance)
   
     Serial.println("exploring");
     
+
     //estan cruzados los motores, left es right y right es left
-    leftMotorSpeed = 255 - map( leftPhotoresistorValue, 300 , 1023 , 0 , 200 );
-    rightMotorSpeed = 255 - map( rightPhotoresistorValue , 300 , 1023 , 0 , 200 );
+    
+
+
+    rightMotorSpeed = 255 - map( leftPhotoresistorValue, 300 , 1023 , 0 , 200 );
+    leftMotorSpeed = 255 - map( rightPhotoresistorValue , 300 , 1023 , 0 , 200 );
 }

@@ -4,12 +4,12 @@
 
  int AggresiveCar::getLeftMotorSpeed() 
 {
-  return leftMotorSpeed;
+  return rightMotorSpeed;
 }
 
  int AggresiveCar::getRightMotorSpeed() 
 {
-  return rightMotorSpeed;
+  return leftMotorSpeed;
 }
 
 AggresiveCar::AggresiveCar(int stopDistance, int slowDownDistance)
@@ -47,9 +47,11 @@ AggresiveCar::AggresiveCar(int stopDistance, int slowDownDistance)
     
 
   
-    Serial.println("Im  fearful");
-    leftMotorSpeed = map( leftPhotoresistorValue, 400 , 1023 , 0 , 255 );
-    if(leftMotorSpeed < 0 ) leftMotorSpeed = 0;
-    rightMotorSpeed = map( rightPhotoresistorValue , 400 , 1023 , 0 , 255 );
+    Serial.println("Im  aggresive");
+    rightMotorSpeed = map( leftPhotoresistorValue, 400 , 1023 , 0 , 255 );
+    leftMotorSpeed = map( rightPhotoresistorValue , 400 , 1023 , 0 , 255 );
+
+
     if(rightMotorSpeed < 0 ) rightMotorSpeed = 0;
+    if(leftMotorSpeed < 0 ) leftMotorSpeed = 0;
 }

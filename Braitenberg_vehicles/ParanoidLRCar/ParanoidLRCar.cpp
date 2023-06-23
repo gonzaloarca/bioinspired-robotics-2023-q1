@@ -4,12 +4,12 @@
 
  int ParanoidLRCar::getLeftMotorSpeed() 
 {
-  return leftMotorSpeed;
+  return rightMotorSpeed;
 }
 
  int ParanoidLRCar::getRightMotorSpeed() 
 {
-  return rightMotorSpeed;
+  return leftMotorSpeed;
 }
 
 ParanoidLRCar::ParanoidLRCar( int stopDistance, int slowDownDistance , int minPhotoresistorValue , int maxPhotoresistorValue)
@@ -30,8 +30,8 @@ ParanoidLRCar::ParanoidLRCar( int stopDistance, int slowDownDistance , int minPh
     switch(this->state){
       case SEARCH_L:
         Serial.println("spinL");
-        rightMotorSpeed =  - ( 255 - 80 );
-        leftMotorSpeed = 80;
+        leftMotorSpeed =  - ( 255 - 80 );
+        rightMotorSpeed = 80;
         //if both detect a lot of light go ahead
         if(leftPhotoresistorValue > maxPhotoresistorValue && rightPhotoresistorValue > maxPhotoresistorValue ){
           //this->lastSpinTime = millis();
@@ -49,8 +49,8 @@ ParanoidLRCar::ParanoidLRCar( int stopDistance, int slowDownDistance , int minPh
         return;
       case SEARCH_R:
           Serial.println("spinR");
-          leftMotorSpeed =  - ( 255 - 100 );
-          rightMotorSpeed = 80;
+          rightMotorSpeed =  - ( 255 - 100 );
+          leftMotorSpeed = 80;
            if(leftPhotoresistorValue > minPhotoresistorValue && rightPhotoresistorValue > maxPhotoresistorValue ){
           //this->lastSpinTime = millis();
           this->state = MOVE;
@@ -101,8 +101,8 @@ ParanoidLRCar::ParanoidLRCar( int stopDistance, int slowDownDistance , int minPh
       }
 
       Serial.println("Forward");
-      rightMotorSpeed= 200;
-      leftMotorSpeed = 180; 
+      leftMotorSpeed= 200;
+      rightMotorSpeed = 180; 
       return;
     
       default: 

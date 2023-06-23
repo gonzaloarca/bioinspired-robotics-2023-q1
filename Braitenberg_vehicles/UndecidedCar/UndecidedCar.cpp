@@ -4,12 +4,12 @@
 
  int UndecidedCar::getLeftMotorSpeed() 
 {
-  return leftMotorSpeed;
+  return rightMotorSpeed;
 }
 
  int UndecidedCar::getRightMotorSpeed() 
 {
-  return rightMotorSpeed;
+  return leftMotorSpeed;
 }
 
 UndecidedCar::UndecidedCar( int stopDistance, int slowDownDistance)
@@ -31,9 +31,9 @@ UndecidedCar::UndecidedCar( int stopDistance, int slowDownDistance)
         Serial.println("retreat");
         if(distance > slowDownDistance ){
           this->state = MOVE;
-          
-        leftMotorSpeed =   150;
-        rightMotorSpeed =  200;
+
+         rightMotorSpeed=   150;
+         leftMotorSpeed=  200;
         }
         leftMotorSpeed =   150 - 255;
         rightMotorSpeed =  150 - 255;
@@ -59,8 +59,8 @@ UndecidedCar::UndecidedCar( int stopDistance, int slowDownDistance)
       }
       Serial.println("Forward");
       speed = 200;
-      rightMotorSpeed= 200;
-      leftMotorSpeed = 180; 
+      leftMotorSpeed= 200;
+      rightMotorSpeed = 180; 
       return;
     
       default: 
