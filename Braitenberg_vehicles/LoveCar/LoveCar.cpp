@@ -47,7 +47,7 @@ LoveCar::LoveCar(int stopDistance, int slowDownDistance)
     
 
   
-    Serial.println("Im  fearful");
+    Serial.println("Im  loving");
 
     
     
