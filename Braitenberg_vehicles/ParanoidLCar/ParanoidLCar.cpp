@@ -22,15 +22,14 @@ ParanoidLCar::ParanoidLCar(int stopDistance, int slowDownDistance)
   rightMotorSpeed = 0;
 }
 
-void ParanoidLCar::update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance)
+void ParanoidLCar::update(int leftPhotoresistorValue,
+                          int rightPhotoresistorValue,
+                          int distance)
 {
-
-  unsigned long currentTime;
   switch (this->state)
   {
 
   case CHASE:
-    Serial.println("FORWARD");
     leftMotorSpeed = constrain(leftMotorSpeed * 2, 25, 255);
     rightMotorSpeed = constrain(rightMotorSpeed * 2, 25, 255);
 
@@ -38,7 +37,6 @@ void ParanoidLCar::update(int leftPhotoresistorValue, int rightPhotoresistorValu
     {
 
     case CHASE:
-      Serial.println("FORWARD");
       leftMotorSpeed = constrain(leftMotorSpeed * 2, 25, 255);
       rightMotorSpeed = constrain(rightMotorSpeed * 2, 25, 255);
 
@@ -50,7 +48,6 @@ void ParanoidLCar::update(int leftPhotoresistorValue, int rightPhotoresistorValu
       }
       break;
     case SPIN:
-      Serial.println("spin");
       leftMotorSpeed = -(255 - 80);
       rightMotorSpeed = 80;
       if (distance < slowDownDistance)
@@ -67,3 +64,4 @@ void ParanoidLCar::update(int leftPhotoresistorValue, int rightPhotoresistorValu
       break;
     }
   }
+}
