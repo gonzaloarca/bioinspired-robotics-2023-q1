@@ -22,7 +22,7 @@
 #define RIGHT_MOTOR_DIR_PIN2 4
 #define RIGHT_MOTOR_MAX_SPEED 230
 
-Car::Car(const ObstinateCar &b)
+Car::Car(const PersistentCar &b)
     : distanceSensor(TRIGGER_PING, ECHO_PIN, DISTANCE_SENSOR_UPDATE_INTERVAL),
       //  Motor(int speedControlPin, int dirControlPin1, int dirControlPin2, int MaxSpeed);
       leftMotor(LEFT_MOTOR_SPEED_PIN, LEFT_MOTOR_DIR_PIN1, LEFT_MOTOR_DIR_PIN2, LEFT_MOTOR_MAX_SPEED),

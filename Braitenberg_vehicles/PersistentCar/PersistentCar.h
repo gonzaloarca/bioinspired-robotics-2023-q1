@@ -1,5 +1,5 @@
-#ifndef OBSTINATECAR_H
-#define OBSTINATECAR_H
+#ifndef PERSISTENTCAR_H
+#define PERSISTENTCAR_H
 #include "CarBehavior.h"
 #include <Arduino.h>
 
@@ -9,7 +9,7 @@ enum State
   RETREAT = 2
 };
 
-class ObstinateCar : public CarBehavior
+class PersistentCar : public CarBehavior
 {
 private:
   unsigned long backUpTime;
@@ -21,7 +21,7 @@ private:
   int rightMotorSpeed;
 
 public:
-  ObstinateCar(int stopDistance, int slowDownDistance, unsigned long backUpTime);
+  PersistentCar(int stopDistance, int slowDownDistance, unsigned long backUpTime);
   virtual void update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance);
   virtual int getLeftMotorSpeed();
   virtual int getRightMotorSpeed();

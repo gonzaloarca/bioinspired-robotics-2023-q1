@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "Car.h"
 
-ObstinateCar behavior(20, 40, 1000);
+PersistentCar behavior(20, 40, 1000);
 Car car(behavior);
 
 void setup()

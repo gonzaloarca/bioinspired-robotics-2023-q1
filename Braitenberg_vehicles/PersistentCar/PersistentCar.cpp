@@ -1,18 +1,18 @@
 #include "Print.h"
-#include "ObstinateCar.h"
+#include "PersistentCar.h"
 #include "Motor.h"
 
-int ObstinateCar::getLeftMotorSpeed()
+int PersistentCar::getLeftMotorSpeed()
 {
   return rightMotorSpeed;
 }
 
-int ObstinateCar::getRightMotorSpeed()
+int PersistentCar::getRightMotorSpeed()
 {
   return leftMotorSpeed;
 }
 
-ObstinateCar::ObstinateCar(int stopDistance, int slowDownDistance, unsigned long backUpTime)
+PersistentCar::PersistentCar(int stopDistance, int slowDownDistance, unsigned long backUpTime)
 {
   this->backUpTime = backUpTime;
   this->state = MOVE;
@@ -23,7 +23,7 @@ ObstinateCar::ObstinateCar(int stopDistance, int slowDownDistance, unsigned long
   rightMotorSpeed = 0;
 }
 
-void ObstinateCar::update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance)
+void PersistentCar::update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance)
 {
   int speed = rightMotorSpeed;
   Serial.print("Stop distance: ");

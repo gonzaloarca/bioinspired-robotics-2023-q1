@@ -1,7 +1,7 @@
 #ifndef CAR_H
 #define CAR_H
 
-#include "ObstinateCar.h"
+#include "PersistentCar.h"
 #include "CarBehavior.h"
 #include "Motor.h"
 #include "Led.h"
@@ -18,10 +18,10 @@ class Car
   Photoresistor rightLdr;
   Led leftLed;
   Led rightLed;
-  ObstinateCar behavior;
+  PersistentCar behavior;
 
 public:
-  Car(const ObstinateCar &behavior);
+  Car(const PersistentCar &behavior);
   void update();
 };
 
