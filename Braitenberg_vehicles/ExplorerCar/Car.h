@@ -21,7 +21,7 @@ class Car
   ExplorerCar behavior;
 
 public:
-  Car(const ExplorerCar& behavior);
+  Car(const ExplorerCar &behavior);
   void update();
 };
 

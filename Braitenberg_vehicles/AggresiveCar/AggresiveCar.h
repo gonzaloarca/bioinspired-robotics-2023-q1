@@ -2,7 +2,8 @@
 #define AGGRESIVECAR_H
 #include "CarBehavior.h"
 #include <Arduino.h>
-class AggresiveCar : public CarBehavior {
+class AggresiveCar : public CarBehavior
+{
 private:
   int minPhotoresistorValue;
   int maxPhotoresistorValue;
@@ -11,12 +12,12 @@ private:
 
   int leftMotorSpeed;
   int rightMotorSpeed;
+
 public:
-    AggresiveCar(int stopDistance, int slowDownDistance);
-    virtual void update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance);
-    virtual int getLeftMotorSpeed();
-    virtual int getRightMotorSpeed();
-    
+  AggresiveCar(int stopDistance, int slowDownDistance);
+  virtual void update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance);
+  virtual int getLeftMotorSpeed();
+  virtual int getRightMotorSpeed();
 };
 
 #endif

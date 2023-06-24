@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "Car.h"
 
-LoveCar behavior(15,25);
+LoveCar behavior(15, 25);
 Car car(behavior);
 
 void setup()

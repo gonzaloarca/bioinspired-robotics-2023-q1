@@ -1,7 +1,8 @@
 #ifndef LED_H
 #define LED_H
 
-class Led {
+class Led
+{
 private:
   int ledPin;
   long onTime;

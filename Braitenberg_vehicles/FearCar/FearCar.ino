@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "Car.h"
 
-FearCar fearCar(15,25 );
+FearCar fearCar(15, 25);
 Car car(fearCar);
 
 void setup()

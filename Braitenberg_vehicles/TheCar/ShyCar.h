@@ -2,7 +2,8 @@
 #define SHYCAR_H
 #include "CarBehavior.h"
 #include <Arduino.h>
-class ShyCar : public CarBehavior {
+class ShyCar : public CarBehavior
+{
 private:
   int minPhotoresistorValue;
   int maxPhotoresistorValue;
@@ -11,12 +12,12 @@ private:
 
   int leftMotorSpeed;
   int rightMotorSpeed;
+
 public:
-    ShyCar(int minPhotoresistorValue, int maxPhotoresistorValue, int stopDistance, int slowDownDistance);
-    virtual void update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance);
-    virtual int getLeftMotorSpeed();
-    virtual int getRightMotorSpeed();
-    
+  ShyCar(int minPhotoresistorValue, int maxPhotoresistorValue, int stopDistance, int slowDownDistance);
+  virtual void update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance);
+  virtual int getLeftMotorSpeed();
+  virtual int getRightMotorSpeed();
 };
 
 #endif

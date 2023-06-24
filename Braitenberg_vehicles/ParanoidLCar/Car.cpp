@@ -38,7 +38,7 @@ void Car::update()
         distanceSensor.update();
 
         // Serial.println("");
-        Serial.print("Light left " );
+        Serial.print("Light left ");
         Serial.println(leftLdr.read());
         Serial.print("Light right  ");
         Serial.println(rightLdr.read());
@@ -50,10 +50,10 @@ void Car::update()
         // Serial.println(behavior.getLeftMotorSpeed());
         // Serial.print("Speed right ");
         // Serial.println(behavior.getRightMotorSpeed());
-        
+
         leftMotor.setSpeed(behavior.getLeftMotorSpeed());
         rightMotor.setSpeed(behavior.getRightMotorSpeed());
-        //leftLed.Update();
-        //rightLed.Update();
-        //Delay(3000);
+        // leftLed.Update();
+        // rightLed.Update();
+        // Delay(3000);
 };

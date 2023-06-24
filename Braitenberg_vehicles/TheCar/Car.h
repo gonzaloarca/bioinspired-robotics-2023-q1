@@ -21,7 +21,7 @@ class Car
   ShyCar behavior;
 
 public:
-  Car(const ShyCar& behavior);
+  Car(const ShyCar &behavior);
   void update();
 };
 

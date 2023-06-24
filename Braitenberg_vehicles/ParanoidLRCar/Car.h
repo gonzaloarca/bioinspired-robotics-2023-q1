@@ -21,7 +21,7 @@ class Car
   ParanoidLRCar behavior;
 
 public:
-  Car(const ParanoidLRCar& behavior);
+  Car(const ParanoidLRCar &behavior);
   void update();
 };
 

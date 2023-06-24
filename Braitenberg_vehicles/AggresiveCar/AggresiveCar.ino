@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "Car.h"
 
-AggresiveCar behavior(15,25);
+AggresiveCar behavior(15, 25);
 Car car(behavior);
 
 void setup()

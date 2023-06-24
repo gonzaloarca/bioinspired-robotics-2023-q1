@@ -3,15 +3,16 @@
 #include "CarBehavior.h"
 #include <Arduino.h>
 
-
-enum State{
+enum State
+{
   SEARCH_L,
   SEARCH_R,
   MOVE,
   STOP
 };
 
-class SearchCar : public CarBehavior {
+class SearchCar : public CarBehavior
+{
 private:
   int minPhotoresistorValue;
   int maxPhotoresistorValue;
@@ -23,11 +24,12 @@ private:
   int leftMotorSpeed;
   int rightMotorSpeed;
   bool ready;
+
 public:
-    SearchCar(int stopDistance, int slowDownDistance , unsigned long spinTime);
-    virtual void update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance);
-    virtual int getLeftMotorSpeed();
-    virtual int getRightMotorSpeed();
+  SearchCar(int stopDistance, int slowDownDistance, unsigned long spinTime);
+  virtual void update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance);
+  virtual int getLeftMotorSpeed();
+  virtual int getRightMotorSpeed();
 };
 
 #endif

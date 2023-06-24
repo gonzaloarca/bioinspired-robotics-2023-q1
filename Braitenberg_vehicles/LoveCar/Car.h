@@ -21,7 +21,7 @@ class Car
   LoveCar behavior;
 
 public:
-  Car(const LoveCar& behavior);
+  Car(const LoveCar &behavior);
   void update();
 };
 

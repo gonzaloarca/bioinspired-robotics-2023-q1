@@ -21,7 +21,7 @@ class Car
   UndecidedCar behavior;
 
 public:
-  Car(const UndecidedCar& behavior);
+  Car(const UndecidedCar &behavior);
   void update();
 };
 

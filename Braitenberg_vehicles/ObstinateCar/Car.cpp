@@ -16,7 +16,7 @@
 #define LEFT_MOTOR_DIR_PIN1 8
 #define LEFT_MOTOR_DIR_PIN2 7
 #define LEFT_MOTOR_MAX_SPEED 255
-// RIGHT MOTOR  
+// RIGHT MOTOR
 #define RIGHT_MOTOR_SPEED_PIN 3
 #define RIGHT_MOTOR_DIR_PIN1 5
 #define RIGHT_MOTOR_DIR_PIN2 4
@@ -35,24 +35,24 @@ Car::Car(const ObstinateCar &b)
 
 void Car::update()
 {
-        distanceSensor.update();
+  distanceSensor.update();
 
-        Serial.println("");
-        Serial.print("Light left " );
-        Serial.println(leftLdr.read());
-        Serial.print("Light right  ");
-        Serial.println(rightLdr.read());
-        Serial.print("Distance ");
-        Serial.println(distanceSensor.read());
+  Serial.println("");
+  Serial.print("Light left ");
+  Serial.println(leftLdr.read());
+  Serial.print("Light right  ");
+  Serial.println(rightLdr.read());
+  Serial.print("Distance ");
+  Serial.println(distanceSensor.read());
 
-        behavior.update(leftLdr.read(), rightLdr.read(), distanceSensor.read());
-        Serial.print("Speed left " );
-        Serial.println(behavior.getLeftMotorSpeed());
-        Serial.print("Speed right ");
-        Serial.println(behavior.getRightMotorSpeed());
-        
-        leftMotor.setSpeed(behavior.getLeftMotorSpeed());
-        rightMotor.setSpeed(behavior.getRightMotorSpeed());
-        
-     // delay(4000);
+  behavior.update(leftLdr.read(), rightLdr.read(), distanceSensor.read());
+  Serial.print("Speed left ");
+  Serial.println(behavior.getLeftMotorSpeed());
+  Serial.print("Speed right ");
+  Serial.println(behavior.getRightMotorSpeed());
+
+  leftMotor.setSpeed(behavior.getLeftMotorSpeed());
+  rightMotor.setSpeed(behavior.getRightMotorSpeed());
+
+  // delay(4000);
 };

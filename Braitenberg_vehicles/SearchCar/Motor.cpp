@@ -37,7 +37,7 @@ void Motor::setSpeed(int speed)
   if (speed > 0)
   {
     setDirection(FORWARD);
-    Serial.print("direction pin " );
+    Serial.print("direction pin ");
     Serial.println(directionControlPin1);
   }
   else if (speed < 0)

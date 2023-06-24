@@ -3,13 +3,14 @@
 #include "CarBehavior.h"
 #include <Arduino.h>
 
-
-enum State{
+enum State
+{
   MOVE,
   OFFENDED
 };
 
-class OffendedCar : public CarBehavior {
+class OffendedCar : public CarBehavior
+{
 private:
   int minPhotoresistorValue;
   int maxPhotoresistorValue;
@@ -21,11 +22,12 @@ private:
   int rightMotorSpeed;
   unsigned long spinTime;
   unsigned long lastSpinTime;
+
 public:
-    OffendedCar(int stopDistance, int slowDownDistance , int spinTime);
-    virtual void update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance);
-    virtual int getLeftMotorSpeed();
-    virtual int getRightMotorSpeed();
+  OffendedCar(int stopDistance, int slowDownDistance, int spinTime);
+  virtual void update(int leftPhotoresistorValue, int rightPhotoresistorValue, int distance);
+  virtual int getLeftMotorSpeed();
+  virtual int getRightMotorSpeed();
 };
 
 #endif

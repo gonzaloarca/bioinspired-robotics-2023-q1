@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "Car.h"
 
-SearchCar behavior(20,40,500);
+SearchCar behavior(20, 40, 500);
 Car car(behavior);
 
 void setup()

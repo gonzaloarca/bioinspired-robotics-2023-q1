@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "Car.h"
 
-ParanoidLRCar behavior(20,40,600,900);
+ParanoidLRCar behavior(20, 40, 600, 900);
 Car car(behavior);
 
 void setup()

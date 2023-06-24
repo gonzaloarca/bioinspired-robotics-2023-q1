@@ -39,24 +39,21 @@ void Car::update()
         distanceSensor.update();
 
         Serial.println("");
-        Serial.print("Light left " );
+        Serial.print("Light left ");
         Serial.println(leftLdr.read());
         Serial.print("Light right  ");
         Serial.println(rightLdr.read());
         Serial.print("Distance ");
         Serial.println(distanceSensor.read());
-      
-
 
         behavior.update(leftLdr.read(), rightLdr.read(), distanceSensor.read());
-        Serial.print("Speed left " );
+        Serial.print("Speed left ");
         Serial.println(behavior.getLeftMotorSpeed());
         Serial.print("Speed right ");
         Serial.println(behavior.getRightMotorSpeed());
-        
+
         leftMotor.setSpeed(behavior.getLeftMotorSpeed());
         rightMotor.setSpeed(behavior.getRightMotorSpeed());
 
-        //delay(2000);
-        
+        // delay(2000);
 };

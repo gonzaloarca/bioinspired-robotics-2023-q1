@@ -8,7 +8,7 @@
 
 #define LEFT_LED_PIN A1
 #define RIGHT_LED_PIN A0
-#define LED_ON_TIME 500 
+#define LED_ON_TIME 500
 #define LED_OFF_TIME 500
 
 class Car

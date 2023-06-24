@@ -1,8 +1,7 @@
 #include <Arduino.h>
 #include "Car.h"
 
-ShyCar shyCar(600,600,15
-,25);
+ShyCar shyCar(600, 600, 15, 25);
 Car car(shyCar);
 
 void setup()

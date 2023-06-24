@@ -32,6 +32,5 @@ void Led::Update()
     previousMillis = currentMillis; // Remember the time
     digitalWrite(ledPin, ledState); // Update the actual LED
     Serial.println("Led off");
-
   }
 }
